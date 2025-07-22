@@ -1,0 +1,14 @@
+{
+  "valid_email_login": {
+    "description": "Login with valid email and password",
+    "username_or_email": "email", 
+    "password": "password",
+    "expected_message_key": "successful_login"
+  },
+  "valid_username_login": {
+    "description": "Login with valid username and password",
+    "username_or_email": "validusername",
+    "password": "correct_password",
+    "expected_message_key": "successful_login"
+  }
+}

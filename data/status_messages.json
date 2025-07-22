@@ -1,0 +1,22 @@
+{
+  "successful_login": {
+    "locator": ".popover-item.fade-in.success.inline",
+    "message": "Başarıyla giriş yaptınız."
+  },
+  "incorrect_login": {
+    "locator": ".popover-item.fade-in.inline",
+    "message": "Hatalı mail veya şifre girdiniz."
+  },
+  "password_change": {
+    "locator": ".popover-item.fade-in.success.btn btn-success.text-left",
+    "message": "Şifre değiştirme linki epostanıza başarıyla gönderildi."
+  },
+  "password_reuse": {
+    "locator": ".popover-item.fade-in.inline",
+    "message": "Yeni şifreniz son 3 şifrenizden farklı olmalıdır."
+  },
+  "too_many_requests": {
+    "locator": ".popover-item.fade-in.btn.btn-danger.text-left",
+    "message": "Çok fazla istek talebinde bulundunuz. Lütfen 30 saniye sonra tekrar deneyiniz."
+  }
+}
