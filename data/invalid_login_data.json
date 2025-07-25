@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Valid email with empty password",
+    "username_or_email": "Valid email",
+    "password": "",
+    "expected_message_key": "incorrect_login"
+  },
+  {
+    "description": "Valid email with incorrect password",
+    "username_or_email": "Valid email",
+    "password": "wrongpassword",
+    "expected_message_key": "incorrect_login"
+  },
+  {
+    "description": "Incorrect email with valid password",
+    "username_or_email": "Incorrect email",
+    "password": "valid password",
+    "expected_message_key": "incorrect_login"
+  },
+  {
+    "description": "Inactive or deleted email",
+    "username_or_email": "Inactive or deleted email",
+    "password": "password",
+    "expected_message_key": "incorrect_login"
+  },
+  {
+    "description": "Invalid email format",
+    "username_or_email": "Invalid email format",
+    "password": "password",
+    "expected_message_key": "incorrect_login"
+  }
+]

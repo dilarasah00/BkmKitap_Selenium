@@ -1,5 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 class BasePage:
     def __init__(self, driver):
@@ -10,6 +12,9 @@ class BasePage:
     def wait_for_element_visible(self,locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
     
+    def wait_for_elements_visible(self,locator):
+        return self.wait.until(EC.visibility_of_all_elements_located(locator))
+    
     def wait_for_element_clickable(self,locator):
         return self.wait.until(EC.element_to_be_clickable(locator))
     
@@ -18,6 +23,10 @@ class BasePage:
 
     def input_text(self,locator,input_text):
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(input_text) 
+    
+    def input_text_and_click_enter(self,locator,input_text):
+        self.wait.until(EC.visibility_of_element_located(locator)).send_keys(input_text + Keys.ENTER)
+
     
     def get_status_message(self,locator):
         message = self.wait.until(EC.visibility_of_element_located(locator)).text
@@ -36,4 +45,7 @@ class BasePage:
 
     
     def accept_cookies(self,locator):
-        self.click_to_web_element(locator)
+        try:
+            self.click_to_web_element(locator)
+        except NoSuchElementException:
+            pass
