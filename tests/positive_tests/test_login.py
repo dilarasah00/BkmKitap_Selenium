@@ -8,10 +8,8 @@ def login_data():
 
 class TestLogin:
 
-    def test_successful_login_with_email(self,driver,status_message,login_data):
-        url ="https://www.bkmkitap.com/"
-        driver.get(url)
-        page = LoginPage(driver)
+    def test_successful_login_with_email(self,get_page,status_message,login_data):
+        page = get_page(LoginPage)
         user_credentials = login_data["valid_email_login"]
         
         page.open_login_popup()
@@ -22,10 +20,8 @@ class TestLogin:
     
 
     @pytest.mark.xfail(reason="Login with username is not implemented")
-    def test_successful_login_with_username(self,driver,status_message,login_data):
-        url ="https://www.bkmkitap.com/"
-        driver.get(url)
-        page = LoginPage(driver)
+    def test_successful_login_with_username(self,get_page,status_message,login_data):
+        page = get_page(LoginPage)
         user_credentials =login_data["valid_username_login"]
 
         page.open_login_popup()

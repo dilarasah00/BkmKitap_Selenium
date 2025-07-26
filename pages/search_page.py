@@ -5,14 +5,14 @@ from selenium.common.exceptions import TimeoutException
 
 class SearchPage(BasePage):
 
-    def enter_product(self,product_name):
-        self.input_text_and_click_enter((By.ID,ru.search_input_locator),product_name)
+    def input_product_information_and_submit(self,product_information):  
+        self.input_text_and_submit((By.ID,ru.search_input_locator),product_information)
     
-    def enter_product_information(self,info):
-        self.input_text((By.ID,ru.search_input_locator),info)
+    def input_product_information(self,product_information):  
+        self.input_text((By.ID,ru.search_input_locator),product_information)
     
     def choose_filter(self):
-        self.wait_for_element_clickable((By.XPATH,ru.child_book_locator)).click()
+        self.click_to_web_element((By.XPATH,ru.child_book_locator))
 
     def get_top10_products(self):
         products= self.wait_for_elements_visible((By.CLASS_NAME,ru.product_detail_locator))
@@ -63,9 +63,6 @@ class SearchPage(BasePage):
             if category != "Çocuk Kitapları":
                 return False
         return True
-    
-    def accept_cookie_before_search(self):
-        self.accept_cookies((By.XPATH,ru.cookie_accept_button_xpath))
 
     def get_listed_products(self):
         try:
@@ -81,4 +78,4 @@ class SearchPage(BasePage):
             return []
     
     def ask_me_later(self):
-        self.wait_for_element_clickable((By.XPATH,ru.desktop_chosen_locator)).click()
+        self.click_to_web_element((By.XPATH,ru.desktop_chosen_locator))

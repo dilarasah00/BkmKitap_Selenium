@@ -5,10 +5,8 @@ import pytest
 
 class TestInvalidLogin:
     @pytest.mark.parametrize("user_credentials",get_json_file("data/invalid_login_data.json"))
-    def test_invalid_login(self,driver,status_message,user_credentials):
-        url ="https://www.bkmkitap.com/"
-        driver.get(url)
-        page = LoginPage(driver)
+    def test_invalid_login(self,get_page,status_message,user_credentials):
+        page = get_page(LoginPage)
         
         page.open_login_popup()
         page.login_user(user_credentials)

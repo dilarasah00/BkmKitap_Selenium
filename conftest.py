@@ -3,12 +3,10 @@ import chromedriver_autoinstaller
 from selenium import webdriver
 from config.get_json_file import get_json_file
 
-@pytest.fixture
-def url_factory():
-    base_url = "https://www.bkmkitap.com"
-    def make_url(detail):
-        return f"{base_url}{detail}"
-    return make_url
+@pytest.fixture(scope="module")
+def base_url():
+    return "https://www.bkmkitap.com/"
+
 
 @pytest.fixture(scope="function")
 def driver():
@@ -21,3 +19,10 @@ def driver():
 @pytest.fixture(scope="module")
 def status_message():
     return get_json_file("data/status_messages.json")
+
+@pytest.fixture
+def get_page(driver,base_url):
+    def _get(page_class):
+        driver.get(base_url)
+        return page_class(driver)
+    return _get
