@@ -20,50 +20,23 @@ class SearchPage(BasePage):
         return top10_products
     
     def get_product_titles(self):
-        titles = []
-        for product in self.get_top10_products():
-            title = product.find_element(By.CLASS_NAME,ru.product_title_locator)
-            titles.append(title.text)
-        print("Top 10 headlines:", titles)
-        return titles
+        return self.get_product_subinfo(self.get_top10_products,By.CLASS_NAME,ru.product_title_locator)
         
     def get_product_brands(self):
-        brands = []
-        for product in self.get_top10_products():
-            brand = product.find_element(By.XPATH,ru.product_brand_locator)
-            brands.append(brand.text)
-        print("Top 10 headlines:", brands)
-        return brands
+        return self.get_product_subinfo(self.get_top10_products,By.XPATH,ru.product_brand_locator)
     
     def get_product_category(self):
-        categorys = []
-        for product in self.get_top10_products():
-            category = product.find_element(By.CLASS_NAME,ru.product_category_locator)
-            categorys.append(category.text)
-        print("Top 10 categories:", category)
-        return categorys
+        return self.get_product_subinfo(self.get_top10_products,By.CLASS_NAME,ru.product_category_locator)
     
     def is_title_matching(self, keyword):
-        titles = self.get_product_titles()
-        for title in titles:
-            if keyword.lower() not in title.lower():
-                return False
-        return True
+        return self.all_values_match(self.get_product_titles,keyword)
     
     def is_brand_matching(self, keyword):
-        brands = self.get_product_brands()
-        for brand in brands:
-            if keyword.lower() not in brand.lower():
-                return False
-        return True
+        return self.all_values_match(self.get_product_brands,keyword)
     
     def is_category_matching(self):
-        categorys = self.get_product_category()
-        for category in categorys:
-            if category != "Çocuk Kitapları":
-                return False
-        return True
-
+        return self.all_values_match(self.get_product_category, "Çocuk Kitapları")
+       
     def get_listed_products(self):
         try:
             products = self.wait_for_elements_visible((By.ID,ru.product_list_locator))

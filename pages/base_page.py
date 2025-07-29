@@ -10,7 +10,7 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(driver,15)
 
-    
+
     def wait_for_element_visible(self,locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
     
@@ -45,3 +45,20 @@ class BasePage:
             self.click_to_web_element((By.XPATH,cookie_accept_button_xpath))
         except NoSuchElementException:
             pass
+    
+    def get_product_subinfo(self,getter_function, by_type, locator):
+        values = []
+        for product in getter_function():
+            try:
+                el = product.find_element(by_type, locator)
+                values.append(el.text)
+            except Exception as e:
+                print( f"Element not found: {e}")
+        return values
+    
+    def all_values_match(self,getter_function,keyword):
+        elements = getter_function()
+        for element in elements:
+            if keyword.lower() not in element.lower():
+                return False
+        return True
