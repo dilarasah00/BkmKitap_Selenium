@@ -11,8 +11,8 @@ class SearchPage(BasePage):
     def input_product_information(self,product_information):  
         self.input_text((By.ID,ru.search_input_locator),product_information)
     
-    def choose_filter(self):
-        self.click_to_web_element((By.XPATH,ru.child_book_locator))
+    def choose_filter(self, category):
+        self.click_to_web_element((By.CSS_SELECTOR,f"[data-value='{category}']"))
 
     def get_top10_products(self):
         products= self.wait_for_elements_visible((By.CLASS_NAME,ru.product_detail_locator))
@@ -34,8 +34,8 @@ class SearchPage(BasePage):
     def is_brand_matching(self, keyword):
         return self.all_values_match(self.get_product_brands,keyword)
     
-    def is_category_matching(self):
-        return self.all_values_match(self.get_product_category, "Çocuk Kitapları")
+    def is_category_matching(self, keyword):
+        return self.all_values_match(self.get_product_category, keyword)
        
     def get_listed_products(self):
         try:
@@ -51,4 +51,4 @@ class SearchPage(BasePage):
             return []
     
     def ask_me_later(self):
-        self.click_to_web_element((By.XPATH,ru.desktop_chosen_locator))
+        self.click_to_web_element((By.XPATH,ru.ask_me_later_button_locator))

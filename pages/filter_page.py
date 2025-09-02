@@ -4,18 +4,25 @@ from selenium.webdriver.common.by import By
 import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class FilterPage(BasePage):
 
     def input_product_information(self,product_information):
         self.input_text_and_submit((By.ID,ru.search_input_locator),product_information)
-
-    def select_category(self):
-        self.click_to_web_element((By.XPATH,ru.child_books_option_locator))
     
-    def select_author(self):
-        self.click_to_web_element((By.XPATH,ru.author_option_locator))
+
+    def select_category(self,category):
+        try:
+            self.click_to_web_element((By.XPATH,f"//div[@class='waw-search-sidebar']//ul[@id='waw-category-list']//span[@class='item' and text()='{category}']"))
+        except Exception as e:
+            print(e)
+    
+    def select_author(self,author):
+        locator = (By.XPATH, f"//*[@id='waw-writer-list']/li[@title='{author}']/label/span")
+        self.scroll_to_element(locator)
+            
     
     def click_sorting_options(self):
         self.click_to_web_element((By.CLASS_NAME,ru.sorting_options_locator))
@@ -37,7 +44,12 @@ class FilterPage(BasePage):
         for price in price_list:
             price = price.replace(".", "").replace(",", ".").strip()
             price_f = re.sub(r"[^\d.]", "", price)
-            prices.append(float(price_f))
+            if not price_f:
+                continue
+            try:
+                prices.append(float(price_f))
+            except ValueError:
+                continue
         return prices
 
     def get_product_category(self):
@@ -46,11 +58,11 @@ class FilterPage(BasePage):
     def get_product_author(self):
         return self.get_product_subinfo(self.get_products, By.XPATH,ru.author_locator)
     
-    def is_category_matching(self):
-        return self.all_values_match(self.get_product_category, "İthaki Çocuk Yayınları")
+    def is_category_matching(self,keyword):
+        return self.all_values_match(self.get_product_category, keyword)
     
-    def is_author_matching(self):
-        return self.all_values_match(self.get_product_author, "James Foley")
+    def is_author_matching(self,keyword):
+        return self.all_values_match(self.get_product_author, keyword)
         
     
     def wait_until_prices_change(self, previous_prices):
@@ -61,3 +73,8 @@ class FilterPage(BasePage):
                 return False
             
         WebDriverWait(self.driver, 15).until(price_changed)
+    
+    def ask_me_later(self):
+        self.click_to_web_element((By.XPATH,ru.ask_me_later_button_locator))
+    
+    

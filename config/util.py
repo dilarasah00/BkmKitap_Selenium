@@ -22,7 +22,7 @@ product_title_locator = "product-title" #class
 product_brand_locator ="//*[@id='waw-product-list']/div[1]/div/a[1]/div/div[2]/p[2]" #xpath
 product_category_locator = "category"
 suggestions_list_locator = "waw-srctxt-product-list"#class
-desktop_chosen_locator = "/html/body/div[7]/div/div[3]/div/button[1]"
+ask_me_later_button_locator  = "/html/body/div[7]/div/div[3]/div/button[1]"
 
 
 #filter locators
@@ -34,4 +34,7 @@ child_books_option_locator = "//*[@id='waw-category-list']/li[2]/label/span"
 author_option_locator = "//*[@id='waw-writer-list']/li[3]/label/span"
 product_item_locator = "waw-product-item-area" #class
 product_price_locator = "waw-basket" #class
-author_locator = "//*[@id='waw-product-list']/div[1]/div/a[1]/div/div[2]/p[3]"
+author_locator = "waw-filter-search-writer"
+bestseller_locator = "menu-header-29"
+menu_button_loactor = ".d-flex.justify-content-center.align-items-center.px-1.gap-10px.text-uppercase.fw-semibold.cursor-pointer"
+apply_filter_button_locator = ".w-100.btn.btn-outline-primary.fw-regular.d-flex.justify-content-center"

@@ -36,8 +36,11 @@ class BasePage:
         return self.driver.current_url
     
     def scroll_to_element(self,locator):
-        element = self.wait_for_element_clickable(locator)
+        element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(locator)
+                )
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        element.click()
 
     
     def accept_cookies(self): 

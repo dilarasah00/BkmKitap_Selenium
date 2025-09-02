@@ -1,16 +1,23 @@
 from pages.filter_page import FilterPage
+from config.get_json_file import get_json_file
+import pytest
 
 
 class TestFilter:
+    test_data = get_json_file("data/filter_data_for_search_input.json")
 
-    def test_filter_functionality(self,get_page):
+    @pytest.mark.parametrize("searh_information",test_data)
+    def test_filter(self,get_page,searh_information):
         page = get_page(FilterPage)
         page.accept_cookies()
 
-        keyword = "ithaki yayınları"
+        keyword = searh_information['search_input']
         page.input_product_information(keyword)
-        page.select_category()
-        assert page.is_category_matching()
+        page.select_category(searh_information['category'])
+        #assert page.is_category_matching(searh_information['category'])
+        
+        page.select_author(searh_information['author'])
+        assert page.is_author_matching(searh_information['author'])
 
         page.click_sorting_options()
         old_prices = page.get_product_price()
@@ -22,9 +29,6 @@ class TestFilter:
 
         page.click_decreasing_option()
         page.wait_until_prices_change(increasing_prices)
-        
+
         decreasing_prices = page.get_product_price()
         assert decreasing_prices == sorted(decreasing_prices, reverse=True)
-
-        page.select_author()
-        assert page.is_author_matching()
