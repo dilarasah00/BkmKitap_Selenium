@@ -2,11 +2,19 @@
 
 This project includes **UI test cases** for the [**Bkm Kitap**](https://www.bkmkitap.com/) website. 
 
-The covered functionalities are:  
-- **Login**  
+The test strategy includes a combination of **manual and automated testing**:  
+- All critical functionalities were first manually tested to ensure they work as expected.  
+- Test cases that passed manual verification were selected for **automation**, and the automation process is ongoing for some scenarios.  
+- For newly added features (phone number login and password reset via phone), **Smoke and Regression Tests** were executed to verify that:  
+  - The new functionalities work correctly. Although phone number login works correctly, the error message for invalid/empty input still shows the email-related message, which is reported as a minor issue.  
+  - Existing features are not negatively affected by these additions.  
+
+The main functionalities covered in this project include:  
+- **Login** (email and phone number login)  
+- **Password reset** (via email and phone)  
 - **Search**  
 - **Filter**  
-- **Cart**  
+- **Cart**   
 
 ## Tech Stack
 - **Language:** Python  
@@ -45,12 +53,21 @@ BkmKitap/
 │ │  └── test_suggestion.py
 │
 ├── requirements.py 
-├── testcases/
+├── test_document/
+│  ├── Test_plan V2.0
+│  ├── Test_plan V1.0
+│  ├── bug_report.xlsx
 │  └── test_cases_and_result.xlsx
 └── conftest.py 
 ```
 
-> ℹ️ **Note:** All manual and automated test cases, along with their results, are documented in `testcases/test_cases_and_result.xlsx`.
+
+## About Document 
+- All manual and automated test cases, along with their results, are documented in `test_document/test_cases_and_result.xlsx`.
+- Found bugs are documented in `test_document/bug_report.xlsx`.
+- Test Plan for the first version is documented in `test_document/Test_plan V1.0`.
+- Test Plan for smoke and regression testing is documented in `test_document/Test_plan V2.0`.
+
 
 ## 🧪 Running the Test Cases
 
@@ -77,7 +94,7 @@ Run all tests:
 pytest tests
 ```
 
-Run a spesific test (e.g., test_search.py under the negative_tests folder):
+Run a specific test (e.g., test_search.py under the negative_tests folder):
 
 ```bash
 pytest tests/negative_tests/test_search.py

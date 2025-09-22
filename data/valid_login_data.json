@@ -1,8 +1,8 @@
 {
   "valid_email_login": {
     "description": "Login with valid email and password",
-    "username_or_email": "valid email", 
-    "password": "valid password",
+    "username_or_email": "shn.htc0880@gmail.com", 
+    "password": "Yeni*_*yeni00",
     "expected_message_key": "successful_login"
   },
   "valid_username_login": {
