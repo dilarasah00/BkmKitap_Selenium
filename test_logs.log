@@ -1,0 +1,16 @@
+2025-09-23 20:08:22,304 - INFO - Starting invalid login test with data: Valid email with empty password
+2025-09-23 20:08:22,734 - INFO - Login field opened
+2025-09-23 20:08:24,307 - INFO - Attempted login with invalid data: email: valid_email and password: 
+2025-09-23 20:08:24,869 - INFO - Expected error message displayed: Hatalı mail veya şifre girdiniz.
+2025-09-23 20:08:31,672 - INFO - Starting invalid login test with data: Valid email with incorrect password
+2025-09-23 20:08:32,064 - INFO - Login field opened
+2025-09-23 20:08:33,750 - INFO - Attempted login with invalid data: email: valid_email and password: wrongpassword
+2025-09-23 20:08:34,325 - INFO - Expected error message displayed: Hatalı mail veya şifre girdiniz.
+2025-09-23 20:08:40,135 - INFO - Starting invalid login test with data: Incorrect email with valid password
+2025-09-23 20:08:40,477 - INFO - Login field opened
+2025-09-23 20:08:40,992 - INFO - Attempted login with invalid data: email: Incorrect email and password: valid_password
+2025-09-23 20:08:42,042 - INFO - Expected error message displayed: Hatalı mail veya şifre girdiniz.
+2025-09-23 20:08:48,905 - INFO - Starting invalid login test with data: Invalid email format
+2025-09-23 20:08:49,233 - INFO - Login field opened
+2025-09-23 20:08:49,688 - INFO - Attempted login with invalid data: email: invalid_email_format and password: valid_password
+2025-09-23 20:08:50,804 - INFO - Expected error message displayed: Hatalı mail veya şifre girdiniz.

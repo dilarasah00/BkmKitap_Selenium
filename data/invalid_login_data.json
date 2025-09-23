@@ -1,26 +1,26 @@
 [
   {
     "description": "Valid email with empty password",
-    "username_or_email": "shn.htc0880@gmail.com",
+    "username_or_email": "valid_email",
     "password": "",
     "expected_message_key": "incorrect_login"
   },
   {
     "description": "Valid email with incorrect password",
-    "username_or_email": "shn.htc0880@gmail.com",
+    "username_or_email": "valid_email",
     "password": "wrongpassword",
     "expected_message_key": "incorrect_login"
   },
   {
     "description": "Incorrect email with valid password",
     "username_or_email": "Incorrect email",
-    "password": "Yeni*_*yeni00",
+    "password": "valid_password",
     "expected_message_key": "incorrect_login"
   },
   {
     "description": "Invalid email format",
-    "username_or_email": "shn.htc0880gmail.com",
-    "password": "Yeni*_*yeni00",
+    "username_or_email": "invalid_email_format",
+    "password": "valid_password",
     "expected_message_key": "incorrect_login"
   }
 ]
